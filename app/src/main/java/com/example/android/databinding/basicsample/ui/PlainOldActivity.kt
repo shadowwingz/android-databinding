@@ -46,31 +46,22 @@ class PlainOldActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // setContentView(R.layout.plain_activity)
-      val binding: PlainActivityBinding = DataBindingUtil.setContentView(this, R.layout.plain_activity)
+        val binding: PlainActivityBinding = DataBindingUtil.setContentView(this, R.layout.plain_activity)
 
-      binding.name = viewModel.name
-      binding.lastName = viewModel.lastName
-      // TODO: Explicitly setting initial values is a bad pattern. We'll fix that.
-      //   updateName()
-        updateLikes()
-    }
-
-    /**
-     * This method is triggered by the `android:onclick` attribute in the layout. It puts business
-     * logic in the activity, which is not ideal. We should do something about that.
-     */
-    fun onLike(view: View) {
-        viewModel.onLike()
-        updateLikes()
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+        // TODO: Explicitly setting initial values is a bad pattern. We'll fix that.
+        //   updateName()
+        // updateLikes()
     }
 
     /**
      * So much findViewById! We'll fix that with Data Binding.
      */
-    private fun updateName() {
+    /*private fun updateName() {
         findViewById<TextView>(R.id.plain_name).text = viewModel.name
         findViewById<TextView>(R.id.plain_lastname).text = viewModel.lastName
-    }
+    }*/
 
     /**
      * This method has many problems:
@@ -78,7 +69,7 @@ class PlainOldActivity : AppCompatActivity() {
      * - It has untestable logic
      * - It's updating two views when called even if they're not changing
      */
-    private fun updateLikes() {
+    /*private fun updateLikes() {
         findViewById<TextView>(R.id.likes).text = viewModel.likes.toString()
         findViewById<ProgressBar>(R.id.progressBar).progress =
             (viewModel.likes * 100 / 5).coerceAtMost(100)
@@ -89,9 +80,9 @@ class PlainOldActivity : AppCompatActivity() {
         ImageViewCompat.setImageTintList(image, ColorStateList.valueOf(color))
 
         image.setImageDrawable(getDrawablePopularity(viewModel.popularity, this))
-    }
+    }*/
 
-    private fun getAssociatedColor(popularity: Popularity, context: Context): Int {
+    /*private fun getAssociatedColor(popularity: Popularity, context: Context): Int {
         return when (popularity) {
             Popularity.NORMAL -> context.theme.obtainStyledAttributes(
                 intArrayOf(android.R.attr.colorForeground)
@@ -99,9 +90,9 @@ class PlainOldActivity : AppCompatActivity() {
             Popularity.POPULAR -> ContextCompat.getColor(context, R.color.popular)
             Popularity.STAR -> ContextCompat.getColor(context, R.color.star)
         }
-    }
+    }*/
 
-    private fun getDrawablePopularity(popularity: Popularity, context: Context): Drawable? {
+    /*private fun getDrawablePopularity(popularity: Popularity, context: Context): Drawable? {
         return when (popularity) {
             Popularity.NORMAL -> {
                 ContextCompat.getDrawable(context, R.drawable.ic_person_black_96dp)
@@ -113,5 +104,5 @@ class PlainOldActivity : AppCompatActivity() {
                 ContextCompat.getDrawable(context, R.drawable.ic_whatshot_black_96dp)
             }
         }
-    }
+    }*/
 }
