@@ -50,6 +50,7 @@ class PlainOldActivity : AppCompatActivity() {
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+        binding.user = "hahaha"
         // TODO: Explicitly setting initial values is a bad pattern. We'll fix that.
         //   updateName()
         // updateLikes()
